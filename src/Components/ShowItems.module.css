@@ -1,0 +1,16 @@
+.items{
+  margin: 10px;
+  width: 100%;
+  align-items: center;
+  padding: 10px 15px;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+.debit{
+  color:green;
+  font-weight: bold;
+}
+.credit{
+  color:red;
+  font-weight: bold;
+}
