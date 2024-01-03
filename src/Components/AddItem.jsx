@@ -1,6 +1,11 @@
-import { useRef } from "react";
+import { useContext, useRef } from "react";
 import styles from "./AddItem.module.css";
-function AddItem(props) {
+import { ItemsContext } from "../store/items-store";
+function AddItem() {
+  const contextObj = useContext(ItemsContext);
+
+  const addItems = contextObj.onAddKey;
+
   const Name = useRef();
   const money = useRef();
   const amount = useRef();
@@ -12,7 +17,7 @@ function AddItem(props) {
     Name.current.value = "";
     money.current.value = "";
     amount.current.value = "";
-    props.onAddKey(Names, moneys, amounts);
+    addItems(Names, moneys, amounts);
     // console.log(Names, moneys, amounts);
   }
 

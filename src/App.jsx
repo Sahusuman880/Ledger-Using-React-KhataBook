@@ -8,6 +8,7 @@ import AddItem from "./Components/AddItem";
 import ShowItems from "./Components/ShowItems";
 import EmptyMessage from "./Components/EmptyMessage";
 import BalanceSheet from "./Components/BalanceSheet";
+import { ItemsContext } from "./store/items-store";
 
 // function App() {
 //   const [count, setCount] = useState(0)
@@ -59,11 +60,19 @@ function App() {
   }
   return (
     <>
-      <Heading></Heading>
-      <AddItem onAddKey={addButtonClicked}></AddItem>
-      <EmptyMessage message={items} />
-      <ShowItems Items={items} onDeleteKey={removeButtonClicked}></ShowItems>
-      <BalanceSheet Items={items} />
+      <ItemsContext.Provider
+        value={{
+          Items: items,
+          onAddKey: addButtonClicked,
+          onDeleteKey: removeButtonClicked,
+        }}
+      >
+        <Heading></Heading>
+        <AddItem onAddKey={addButtonClicked}></AddItem>
+        <EmptyMessage message={items} />
+        <ShowItems Items={items} onDeleteKey={removeButtonClicked}></ShowItems>
+        <BalanceSheet Items={items} />
+      </ItemsContext.Provider>
     </>
   );
 }

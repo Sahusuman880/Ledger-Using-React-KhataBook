@@ -1,8 +1,14 @@
+import { useContext } from "react";
 import styles from "./ShowItems.module.css";
-function ShowItems(props) {
+import { ItemsContext } from "../store/items-store";
+
+function ShowItems() {
+  const contextObj = useContext(ItemsContext);
+  const PaymentItems = contextObj.Items;
+  const deleteItems = contextObj.onDeleteKey;
   return (
     <>
-      {props.Items.map((element, index) => {
+      {PaymentItems.map((element, index) => {
         return (
           <div className={`${styles.items} container text-center `} key={index}>
             <div className="row row-cols-4">
@@ -20,7 +26,7 @@ function ShowItems(props) {
               <div className="col">
                 <button
                   className={`${styles.btn}  btn btn-danger`}
-                  onClick={() => props.onDeleteKey(index)}
+                  onClick={() => deleteItems(index)}
                 >
                   Delete
                 </button>
