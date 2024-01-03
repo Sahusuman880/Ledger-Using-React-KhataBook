@@ -1,8 +1,13 @@
+import { useContext } from "react";
+import { ItemsContext } from "../store/items-store";
 import styles from "./EmptyMessage.module.css";
-function EmptyMessage(props) {
+function EmptyMessage() {
+  const contextObj = useContext(ItemsContext);
+
+  const message = contextObj.Items;
   return (
     <p className={styles.message}>
-      {props.message.length === 0 ? "Add Some bills " : null}
+      {message.length === 0 ? "Add Some bills " : null}
     </p>
   );
 }

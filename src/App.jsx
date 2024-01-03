@@ -47,11 +47,15 @@ function App() {
     },
   ]);
   function addButtonClicked(Names, moneys, amounts) {
-    const newItem = [
-      ...items,
-      { customer: Names, money: moneys, amount: amounts },
-    ];
-    setItem(newItem);
+    if ((Names.length === 0, moneys.length == 0)) {
+      alert("enter valid details");
+    } else {
+      const newItem = [
+        ...items,
+        { customer: Names, money: moneys, amount: amounts },
+      ];
+      setItem(newItem);
+    }
   }
   function removeButtonClicked(index) {
     let newItem = [...items];
@@ -68,9 +72,9 @@ function App() {
         }}
       >
         <Heading></Heading>
-        <AddItem onAddKey={addButtonClicked}></AddItem>
+        <AddItem></AddItem>
         <EmptyMessage message={items} />
-        <ShowItems Items={items} onDeleteKey={removeButtonClicked}></ShowItems>
+        <ShowItems></ShowItems>
         <BalanceSheet Items={items} />
       </ItemsContext.Provider>
     </>

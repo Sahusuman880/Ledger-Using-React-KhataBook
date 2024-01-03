@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import styles from "./ShowItems.module.css";
 import { ItemsContext } from "../store/items-store";
+import { AiFillDelete } from "react-icons/ai";
 
 function ShowItems() {
   const contextObj = useContext(ItemsContext);
@@ -28,7 +29,7 @@ function ShowItems() {
                   className={`${styles.btn}  btn btn-danger`}
                   onClick={() => deleteItems(index)}
                 >
-                  Delete
+                  <AiFillDelete />
                 </button>
               </div>
             </div>

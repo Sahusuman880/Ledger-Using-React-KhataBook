@@ -1,11 +1,16 @@
+import { useContext } from "react";
+import { ItemsContext } from "../store/items-store";
 import styles from "./BalanceSheet.module.css";
-function BalanceSheet(props) {
+function BalanceSheet() {
   let debit = 0;
   let credit = 0;
+  const contextObj = useContext(ItemsContext);
+
+  const Item = contextObj.Items;
 
   return (
     <>
-      {props.Items.map((element) => {
+      {Item.map((element) => {
         if (element.money === "Debit") {
           debit += Number(element.amount);
         } else {

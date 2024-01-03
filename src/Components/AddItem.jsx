@@ -1,6 +1,7 @@
 import { useContext, useRef } from "react";
 import styles from "./AddItem.module.css";
 import { ItemsContext } from "../store/items-store";
+import { IoPersonAdd } from "react-icons/io5";
 function AddItem() {
   const contextObj = useContext(ItemsContext);
 
@@ -57,7 +58,7 @@ function AddItem() {
           </div>
           <div className="col">
             <button type="submit" className={`${styles.btn} btn btn-success`}>
-              Add
+              <IoPersonAdd />
             </button>
           </div>
         </div>
