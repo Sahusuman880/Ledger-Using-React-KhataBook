@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useReducer, useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 // import './App.css'
@@ -38,29 +38,53 @@ import { ItemsContext } from "./store/items-store";
 //     </>
 //   )
 // }
+
+function itemReducer(currentItem, action) {
+  let newItem = [...currentItem];
+  if (action.type === "ADD_ITEM") {
+    newItem.push({
+      customer: action.payload.Names,
+      money: action.payload.moneys,
+      amount: action.payload.amounts,
+    });
+  }
+  if (action.type === "DELETE_ITEM") {
+    newItem.splice(action.payload, 1);
+  }
+  return newItem;
+}
 function App() {
-  const [items, setItem] = useState([
-    {
-      customer: "Suman Sahu",
-      money: "Debit",
-      amount: 10000,
-    },
-  ]);
+  // const [items, setItem] = useState([
+
+  //   {
+  //     customer: "Suman Sahu",
+  //     money: "Debit",
+  //     amount: 10000,
+  //   },
+  // ]);
+  const [items, dispatchItems] = useReducer(itemReducer, []);
+
   function addButtonClicked(Names, moneys, amounts) {
     if ((Names.length === 0, moneys.length == 0)) {
       alert("enter valid details");
     } else {
-      const newItem = [
-        ...items,
-        { customer: Names, money: moneys, amount: amounts },
-      ];
-      setItem(newItem);
+      const AddItem = {
+        type: "ADD_ITEM",
+        payload: {
+          Names,
+          moneys,
+          amounts,
+        },
+      };
+      dispatchItems(AddItem);
     }
   }
   function removeButtonClicked(index) {
-    let newItem = [...items];
-    newItem.splice(index, 1);
-    setItem(newItem);
+    const deleteItem = {
+      type: "DELETE_ITEM",
+      payload: index,
+    };
+    dispatchItems(deleteItem);
   }
   return (
     <>
